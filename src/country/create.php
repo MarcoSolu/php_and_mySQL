@@ -25,13 +25,13 @@ if(
         echo json_encode(array("message" => "Country has been created."));
     }
     else{
-        //503 servizio non disponibile
+        
         http_response_code(503);
         echo json_encode(array("message" => "Can't create the country"));
     }
 }
 else{
-    //400 bad request
+    
     http_response_code(400);
     echo json_encode(array("message" => "Can't create the country. Bad Response"));
 }

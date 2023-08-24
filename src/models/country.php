@@ -3,25 +3,25 @@ class Country
 	{
 	private $conn;
 	private $table_name = "countries";
-	// proprietà di un libro
+	
 	public $id;
 	public $name;
 	public $travel_name;
-	// costruttore
+	
 	public function __construct($db)
 		{
 		$this->conn = $db;
 		}
-	// READ libri
+	
 	function read()
 		{
-		// select all
+		
 		$query = "SELECT
                         a.id, a.name, a.travel_name
                     FROM
                    " . $this->table_name . " a ";
 		$stmt = $this->conn->prepare($query);
-		// execute query
+		
 		$stmt->execute();
 		return $stmt;
 		}
@@ -39,11 +39,11 @@ class Country
 			
 			$this->name = htmlspecialchars(strip_tags($this->name));
 		 
-			// binding
+			
 			$stmt->bindParam(":Name", $this->name);
 			$stmt->bindParam(":name_travel", $this->travel_name);
 		 
-			// execute query
+			
 			if($stmt->execute()){
 				return true;
 			}
@@ -59,18 +59,20 @@ class Country
 					SET
 						name = :Name,
 						travel_name = :name_travel
-					";
+					WHERE
+						id = :ID";
 		 
 			$stmt = $this->conn->prepare($query);
-		 
+			
+			$this->id = htmlspecialchars(strip_tags($this->id));
 			$this->name = htmlspecialchars(strip_tags($this->name));
 			$this->travel_name = htmlspecialchars(strip_tags($this->travel_name));
 		 
-			// binding
+			$stmt->bindParam(":ID", $this->id);
 			$stmt->bindParam(":Name", $this->name);
 			$stmt->bindParam(":name_travel", $this->travel_name);
 		 
-			// execute the query
+			
 			if($stmt->execute()){
 				return true;
 			}
@@ -89,7 +91,7 @@ class Country
 		 
 			$stmt->bindParam(1, $this->name);
 		 
-			// execute query
+			
 			if($stmt->execute()){
 				return true;
 			}
@@ -110,7 +112,7 @@ class Country
 		 
 			$stmt->bindParam(":name_travel", $travelNAME);
 		 
-			// execute query
+			
 			if($stmt->execute()) {
 				return $stmt;
 			}

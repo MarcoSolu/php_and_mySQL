@@ -60,14 +60,16 @@ class Travel
 					SET
 						name = :Name,
 						seats_available = :available_seats
-					";
+					WHERE
+						id = :ID";
 		 
 			$stmt = $this->conn->prepare($query);
-		 
+			
+			$this->id = htmlspecialchars(strip_tags($this->id));
 			$this->name = htmlspecialchars(strip_tags($this->name));
 			$this->seats_available = htmlspecialchars(strip_tags($this->seats_available));
 		 
-			
+			$stmt->bindParam(":ID", $this->id);
 			$stmt->bindParam(":Name", $this->name);
 			$stmt->bindParam(":available_seats", $this->seats_available);
 		 

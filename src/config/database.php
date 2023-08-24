@@ -6,13 +6,13 @@ $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../../');
 $dotenv->load();
 class Database
 	{
-	// credenziali
+	
 	private $host;
 	private $db_name;
 	private $username;
 	private $password;
 	public $conn;
-	// connessione al database
+	
 	public function getConnection()
 		{
 		$this->conn = null;
