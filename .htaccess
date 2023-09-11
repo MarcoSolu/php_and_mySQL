@@ -3,4 +3,15 @@ RewriteBase /TravelsAgency/
 
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^(.*)$ index.php?uri=$1 [QSA,L]
+RewriteRule ^country/read$ src/controllers/country/read.php [L]
+RewriteRule ^country/create$ src/controllers/country/create.php [L]
+RewriteRule ^country/update$ src/controllers/country/update.php [L]
+RewriteRule ^country/delete$ src/controllers/country/delete.php [L]
+RewriteRule ^country/filter$ src/controllers/country/filterByCountry.php [L]
+
+RewriteRule ^travel/read$ src/controllers/travel/read.php [L]
+RewriteRule ^travel/create$ src/controllers/travel/create.php [L]
+RewriteRule ^travel/update$ src/controllers/travel/update.php [L]
+RewriteRule ^travel/delete$ src/controllers/travel/delete.php [L]
+RewriteRule ^travel/filter$ src/controllers/travel/filterBySeats.php [L]
+
